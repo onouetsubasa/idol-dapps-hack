@@ -1,8 +1,8 @@
 <template>
   <div>
-    <el-row :gutter="20" :offset="4">
+    <el-main>
       <nuxt />
-    </el-row>
+    </el-main>
   </div>
 </template>
 

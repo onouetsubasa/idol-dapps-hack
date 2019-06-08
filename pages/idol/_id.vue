@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+      <el-row>
+          <img :src="image" class="image">
+      </el-row>
     <div>
         {{name}}
     </div>
@@ -9,9 +12,17 @@
 <script>
 export default {
     asyncData() {
-        let idol = {id: 1, name: '田中麻美', image: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png'};
+        let idol = {id: 1, name: '田中麻美', image: 'https://i.ytimg.com/vi/Ti6l8JD1PBY/maxresdefault.jpg'};
 
         return idol
     }
 }
 </script>
+
+<style>
+    .image {
+        width: 100%;
+        height: auto;
+    }
+</style>
+
