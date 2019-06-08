@@ -131,8 +131,9 @@ const contract = new web3.eth.Contract(abi, process.env.contract_addr)
       )
       .send({
           from: this.address,
-          gas: 30000000,
-          gasPrice: '3000000',
+          gas: 3000000,
+          gasPrice: web3.eth.gasPrice,
+          gasLimit: web3.eth.getBlock("latest").gasLimit,
           value: price
       })
       .on('transactionHash', (hash) => {
