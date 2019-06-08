@@ -1,5 +1,9 @@
 <template>
   <div class="container">
+    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+      <el-menu-item index="1">Top</el-menu-item>
+      <el-menu-item index="2">音声登録</el-menu-item>
+    </el-menu>
     <h3>おすすめ</h3>
     <div class="recomend">
       <el-row justify="center" >
@@ -35,7 +39,6 @@
 
 <script>
 import Logo from '~/components/Logo.vue'
-// import web3 from '~/assets/metamask_connect.js'
 
 import Web3 from 'web3'
 var web3
