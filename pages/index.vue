@@ -1,16 +1,22 @@
 <template>
   <div class="container">
-    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-      <el-menu-item index="1">
-        <nuxt-link to="/">Top</nuxt-link>
-      </el-menu-item>
-      <el-menu-item index="2">
-        <nuxt-link to="/voice">音声登録</nuxt-link>
-      </el-menu-item>
-      <el-menu-item index="3">
-        <nuxt-link to="/my_item_list">MyPage</nuxt-link>
-      </el-menu-item>
-    </el-menu>
+  <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+    <el-menu-item index="1">
+      <nuxt-link to="/">Top</nuxt-link>
+    </el-menu-item>
+    <el-menu-item index="2">
+      <nuxt-link to="/my_item_list">MyPage</nuxt-link>
+    </el-menu-item>
+    <el-submenu index="3">
+      <template slot="title">アイドルはこちら</template>
+        <el-menu-item index="2-1">
+          <nuxt-link to="/idol-account">アイドルアカウント登録</nuxt-link>
+        </el-menu-item>
+        <el-menu-item index="2-2">
+          <nuxt-link to="/voice">音声登録</nuxt-link>
+        </el-menu-item>
+    </el-submenu>    
+  </el-menu>
     <h3>おすすめ</h3>
     <div class="recomend">
       <el-row justify="center" >

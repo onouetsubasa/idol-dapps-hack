@@ -5,11 +5,17 @@
         <nuxt-link to="/">Top</nuxt-link>
       </el-menu-item>
       <el-menu-item index="2">
-        <nuxt-link to="/voice">音声登録</nuxt-link>
-      </el-menu-item>
-      <el-menu-item index="3">
         <nuxt-link to="/my_item_list">MyPage</nuxt-link>
       </el-menu-item>
+      <el-submenu index="3">
+        <template slot="title">アイドルはこちら</template>
+          <el-menu-item index="2-1">
+            <nuxt-link to="/idol-account">アイドルアカウント登録</nuxt-link>
+          </el-menu-item>
+          <el-menu-item index="2-2">
+            <nuxt-link to="/voice">音声登録</nuxt-link>
+          </el-menu-item>
+      </el-submenu>    
     </el-menu>
     <h3>音声登録</h3>
     <el-form ref="form" :model="form" label-width="120px">
@@ -87,28 +93,28 @@ export default {
       console.log(value)
     },
     onSubmit() {
-      console.log(this.$refs)
-      // contract.methods.releaseVoice(
-      //   8888,
-      //   this.form.supply,
-      //   this.form.price
-      // )
-      // .send({
-      //     from: this.address,
-      //     gas: 3000000,
-      //     gasPrice: '3000000'
-      // })
-      // // .then((receipt) => {
-      // //   console.log(receipt)
-      // // });
-      // .on('transactionHash', (hash) => {
-      //   this.transaction = hash
-      // })
-      // .on('confirmation', (confirmationNumber, receipt) => {
-      //   if(receipt.status) {
-      //     this.$router.push({ path: `/idol/${receipt.from}` })
-      //   }
-      // })
+      // console.log(this.$refs)
+      contract.methods.releaseVoice(
+        8888,
+        this.form.supply,
+        this.form.price
+      )
+      .send({
+          from: this.address,
+          gas: 3000000,
+          gasPrice: '3000000'
+      })
+      // .then((receipt) => {
+      //   console.log(receipt)
+      // });
+      .on('transactionHash', (hash) => {
+        this.transaction = hash
+      })
+      .on('confirmation', (confirmationNumber, receipt) => {
+        if(receipt.status) {
+          this.$router.push({ path: `/idol/${receipt.from}` })
+        }
+      })
     },
     detectFiles(e) {
       // アップロード対象は1件のみとする
