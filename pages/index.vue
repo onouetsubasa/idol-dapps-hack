@@ -1,18 +1,32 @@
 <template>
   <div class="container">
-    <div>
-      <el-row>
-        <el-col :span="4" v-for="i in idols" :key="i.id">
-          <el-card :body-style="{ padding: '10px' }">
-            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+    <h3>おすすめ</h3>
+    <div class="recomend">
+      <el-row justify="center" >
+        <el-col class="card" :span="4"  v-for="i in idols" :key="i.id">
+          <a :href="`/idol/${i.id}`">
+          <el-card :body-style="{ padding: '0px' }">
+            <img :src="i.image" class="image">
             <div style="padding: 14px;">
-              <span>Yummy hamburger</span>
-              <div class="bottom clearfix">
-                <time class="time">{{ currentDate }}</time>
-                <el-button type="text" class="button">Operating</el-button>
-              </div>
+              <span>{{ i.name }}</span>
             </div>
           </el-card>
+          </a>
+        </el-col>
+      </el-row>
+    </div>
+    <h3>ランキング</h3>
+    <div class="ranking">
+      <el-row justify="center" >
+        <el-col class="card" :span="4"  v-for="i in idols" :key="i.id">
+          <a :href="`/idol/${i.id}`">
+          <el-card :body-style="{ padding: '0px' }">
+            <img :src="i.image" class="image">
+            <div style="padding: 14px;">
+              <span>{{ i.name }}</span>
+            </div>
+          </el-card>
+          </a>
         </el-col>
       </el-row>
     </div>
@@ -50,6 +64,10 @@ export default {
   .time {
     font-size: 13px;
     color: #999;
+  }
+
+  .card {
+    margin: 10px
   }
   
   .bottom {
