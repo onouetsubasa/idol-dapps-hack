@@ -92,7 +92,7 @@ export default {
       //     }
       //   }
       // )
-      console.log(response.data)
+      this.$router.push({ path: `/voice` })
     },
     handleAvatarSuccess(res, file) {
       this.imageUrl = URL.createObjectURL(file.raw)

@@ -103,7 +103,6 @@ const contract = new web3.eth.Contract(abi, process.env.contract_addr)
               voiceId
             ).call()
             .then((result) => {
-                          console.log("aaa")
               const totalSupply = web3.utils.hexToNumber(result.totalSupply)
               const issuedNum = web3.utils.hexToNumber(result.issuedNum)
               const price = web3.utils.hexToNumber(result.price)

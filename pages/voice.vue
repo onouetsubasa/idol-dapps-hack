@@ -31,6 +31,7 @@
         </el-form-item>
         <el-form-item label="金額">
           <el-input-number v-model="form.price" @change="handleChange"></el-input-number>
+          <label>( ETH )</label>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="onSubmit">発行</el-button>
@@ -72,8 +73,8 @@ export default {
       address: '',
       form: {
         name: '',
-        supply: 0,
-        price: 0,
+        supply: 1,
+        price: 1,
         voice: ''
       },
       transaction: ''
@@ -112,10 +113,12 @@ export default {
       //   }
       // )
       console.log(response)
+      const BN = web3.utils.BN;
+      const numString = new BN(this.form.price).toString();
       contract.methods.releaseVoice(
-        7777,
+        6666,
         this.form.supply,
-        this.form.price
+        web3.utils.toWei(numString, 'ether')
       )
       .send({
           from: this.address,
