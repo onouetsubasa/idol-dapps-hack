@@ -6,37 +6,8 @@
         <nuxt-link to="/voice">商品登録</nuxt-link>
       </el-menu-item>
     </el-menu>
-    <h3>おすすめ</h3>
-    <div class="recomend">
-      <el-row justify="center" >
-        <el-col class="card" :span="4"  v-for="i in idols" :key="i.id">
-          <a :href="`/idol/${i.id}`">
-          <el-card :body-style="{ padding: '0px' }">
-            <img :src="i.image" class="image">
-            <div style="padding: 14px;">
-              <span>{{ i.name }}</span>
-            </div>
-          </el-card>
-          </a>
-        </el-col>
-      </el-row>
+    <h3>商品登録</h3>
     </div>
-    <h3>ランキング</h3>
-    <div class="ranking">
-      <el-row justify="center" >
-        <el-col class="card" :span="4"  v-for="i in idols" :key="i.id">
-          <a :href="`/idol/${i.id}`">
-          <el-card :body-style="{ padding: '0px' }">
-            <img :src="i.image" class="image">
-            <div style="padding: 14px;">
-              <span>{{ i.name }}</span>
-            </div>
-          </el-card>
-          </a>
-        </el-col>
-      </el-row>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -669,39 +640,3 @@ export default {
   }
 }
 </script>
-
-<style>
-  .time {
-    font-size: 13px;
-    color: #999;
-  }
-
-  .card {
-    margin: 10px
-  }
-
-  .bottom {
-    margin-top: 13px;
-    line-height: 12px;
-  }
-
-  .button {
-    padding: 0;
-    float: right;
-  }
-
-  .image {
-    width: 100%;
-    display: block;
-  }
-
-  .clearfix:before,
-  .clearfix:after {
-      display: table;
-      content: "";
-  }
-
-  .clearfix:after {
-      clear: both
-  }
-</style>
