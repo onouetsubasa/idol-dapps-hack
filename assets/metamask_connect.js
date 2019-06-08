@@ -31,3 +31,5 @@ const getBalance = _address => {
         console.log(JSON.stringify(balance, null, 2));
     })
 }
+
+export default web3;
