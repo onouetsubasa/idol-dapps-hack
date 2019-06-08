@@ -30,9 +30,7 @@
     </el-table-column>
     <el-table-column
       align="right">
-      <template slot-scope="scope">
-        <el-button type="primary" icon="el-icon-video-play" @click="onPlay"></el-button>
-      </template>
+      <audio :src="require('@/assets/music.mp3')" controls></audio>
     </el-table-column>
   </el-table>
 </div>

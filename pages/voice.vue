@@ -48,6 +48,7 @@
 import Logo from '~/components/Logo.vue'
 import Web3 from 'web3'
 import abi from '../plugins/abi'
+import axios from "axios"
 var web3
 
 // init client web3 js
@@ -92,29 +93,34 @@ export default {
     handleChange(value) {
       console.log(value)
     },
-    onSubmit() {
+    async onSubmit() {
       // console.log(this.$refs)
-      contract.methods.releaseVoice(
-        8888,
-        this.form.supply,
-        this.form.price
-      )
-      .send({
-          from: this.address,
-          gas: 3000000,
-          gasPrice: '3000000'
-      })
-      // .then((receipt) => {
-      //   console.log(receipt)
-      // });
-      .on('transactionHash', (hash) => {
-        this.transaction = hash
-      })
-      .on('confirmation', (confirmationNumber, receipt) => {
-        if(receipt.status) {
-          this.$router.push({ path: `/idol/${receipt.from}` })
+      const response = await axios.post(
+        'https://idol-token-web.herokuapp.com/idol_token/register_item', 
+        {
+          title: 'test',
+          image: 'test'
         }
-      })
+      )
+      console.log(response.id)
+      // contract.methods.releaseVoice(
+      //   8888,
+      //   this.form.supply,
+      //   this.form.price
+      // )
+      // .send({
+      //     from: this.address,
+      //     gas: 3000000,
+      //     gasPrice: '3000000'
+      // })
+      // .on('transactionHash', (hash) => {
+      //   this.transaction = hash
+      // })
+      // .on('confirmation', (confirmationNumber, receipt) => {
+      //   if(receipt.status) {
+      //     this.$router.push({ path: `/idol/${receipt.from}` })
+      //   }
+      // })
     },
     detectFiles(e) {
       // アップロード対象は1件のみとする
