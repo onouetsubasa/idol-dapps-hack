@@ -14,7 +14,7 @@
     <el-table-column
       align="right">
       <template slot-scope="scope">
-        <el-button type="primary" icon="el-icon-lollipop">購入</el-button>
+        <el-button type="primary" icon="el-icon-video-play"></el-button>
       </template>
     </el-table-column>
   </el-table>
