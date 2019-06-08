@@ -99,24 +99,17 @@ export default {
     },
     async onSubmit() {
       // console.log(this.$refs)
-      const response = await axios.get('idol_token/register_item/?title=test', {
+      const response = await axios.get(`idol_token/register_item/?title=${this.name}`, {
         baseURL: 'https://idol-token-web.herokuapp.com/',
         headers: { "Content-Type": "application/json", 'X-Requested-With': 'XMLHttpRequest' },
         responseType: 'json',
         data: {}
       })
-      // const response = await axios.post(
-      //   'https://idol-token-web.herokuapp.com/idol_token/register_item/',
-      //   {
-      //     title: 'test',
-      //     image: 'test'
-      //   }
-      // )
-      console.log(response)
+      console.log(response.data.id)
       const BN = web3.utils.BN;
       const numString = new BN(this.form.price).toString();
       contract.methods.releaseVoice(
-        6666,
+        response.data.id,
         this.form.supply,
         web3.utils.toWei(numString, 'ether')
       )
