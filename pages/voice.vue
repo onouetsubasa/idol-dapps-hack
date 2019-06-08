@@ -17,26 +17,29 @@
           </el-menu-item>
       </el-submenu>    
     </el-menu>
-    <h3>音声登録</h3>
-    <el-form ref="form" :model="form" label-width="120px">
-      <el-form-item label="タイトル">
-        <el-input v-model="form.name"></el-input>
-      </el-form-item>
-      <el-form-item label="音声">
-        <input type="file" :multiple="false" accept="mp3/*" @change="detectFiles($event)">
-      </el-form-item>
-      <el-form-item label="発行量">
-        <el-input-number v-model="form.supply" @change="handleChange" :min="1"></el-input-number>
-      </el-form-item>
-      <el-form-item label="金額">
-        <el-input-number v-model="form.price" @change="handleChange"></el-input-number>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="onSubmit">発行</el-button>
-        <el-button>リセット</el-button>
-      </el-form-item>
-    </el-form>
+    <h2 style="margin: 20px 0">音声登録</h2>
+    <el-card class="box-card" style="margin: 20px 0">
+      <el-form ref="form" :model="form" label-width="120px">
+        <el-form-item label="タイトル">
+          <el-input v-model="form.name"></el-input>
+        </el-form-item>
+        <el-form-item label="音声">
+          <input type="file" :multiple="false" accept="mp3/*" @change="detectFiles($event)">
+        </el-form-item>
+        <el-form-item label="発行量">
+          <el-input-number v-model="form.supply" @change="handleChange" :min="1"></el-input-number>
+        </el-form-item>
+        <el-form-item label="金額">
+          <el-input-number v-model="form.price" @change="handleChange"></el-input-number>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="onSubmit">発行</el-button>
+          <el-button>リセット</el-button>
+        </el-form-item>
+      </el-form>
+    </el-card>
     <div>
+      <h3 style="margin: 10px 0">トランザクション</h3>
       <el-card class="box-card">
         <div class="text item">{{transaction}}</div>
       </el-card>
@@ -95,14 +98,20 @@ export default {
     },
     async onSubmit() {
       // console.log(this.$refs)
-      const response = await axios.post(
-        'https://idol-token-web.herokuapp.com/idol_token/register_item', 
-        {
-          title: 'test',
-          image: 'test'
-        }
-      )
-      console.log(response.id)
+      const response = await axios.post('idol_token/register_item/?title=test', {
+        baseURL: 'https://idol-token-web.herokuapp.com/',
+        headers: { "Content-Type": "application/json", 'X-Requested-With': 'XMLHttpRequest' },
+        responseType: 'json',
+        data: {}
+      })
+      // const response = await axios.post(
+      //   'https://idol-token-web.herokuapp.com/idol_token/register_item/',
+      //   {
+      //     title: 'test',
+      //     image: 'test'
+      //   }
+      // )
+      console.log(response)
       // contract.methods.releaseVoice(
       //   8888,
       //   this.form.supply,

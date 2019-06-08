@@ -17,28 +17,51 @@
         </el-menu-item>
     </el-submenu>    
   </el-menu>
-  <el-table
-    :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
-    style="width: 100%">
-    <el-table-column
-      label="Date"
-      prop="date">
-    </el-table-column>
-    <el-table-column
-      label="Name"
-      prop="name">
-    </el-table-column>
-    <el-table-column
-      align="right">
-      <audio :src="require('@/assets/music.mp3')" controls></audio>
-    </el-table-column>
-  </el-table>
+  <h2 style="margin: 20px 0">マイページ</h2>
+  <el-card class="box-card" style="margin: 20px 0">
+    <div class="text item" center>
+      ADDRESS :  {{ address }}
+    </div>
+  </el-card>
+  <el-card class="box-card" style="margin: 20px 0">
+    <el-table
+      :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+      style="width: 100%">
+      <el-table-column
+        label="Date"
+        prop="date">
+      </el-table-column>
+      <el-table-column
+        label="Name"
+        prop="name">
+      </el-table-column>
+      <el-table-column
+        align="right">
+        <audio :src="require('@/assets/music.mp3')" controls></audio>
+      </el-table-column>
+    </el-table>
+  </el-card>
 </div>
 </template>
+
 <script>
+import Web3 from 'web3'
+import abi from '../plugins/abi'
+import axios from "axios"
+var web3
+
+if (process.browser) {
+  console.log('givenProvider=')
+  console.log(Web3.givenProvider)
+  web3 = new Web3(Web3.givenProvider)
+}
+
+const contract = new web3.eth.Contract(abi, process.env.contract_addr)
+
   export default {
     data() {
       return {
+        address: '',
         tableData: [{
           date: '2016-05-03',
           name: 'Tom',
@@ -58,6 +81,11 @@
         }],
         search: '',
       }
+    },
+    async asyncData() {
+      const addresses = await web3.eth.getAccounts()
+      const address = addresses[0]
+      return { address: address }
     },
     methods: {
       onPlay() {

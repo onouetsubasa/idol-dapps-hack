@@ -17,7 +17,7 @@
         </el-menu-item>
     </el-submenu>    
   </el-menu>
-    <h3>おすすめ</h3>
+    <h2 style="margin: 20px 0">おすすめ</h2>
     <div class="recomend">
       <el-row justify="center" >
         <el-col class="card" :span="4"  v-for="i in idols.recomends" :key="i.id">
@@ -32,7 +32,7 @@
         </el-col>
       </el-row>
     </div>
-    <h3>ランキング</h3>
+    <h2 style="margin: 20px 0">ランキング</h2>
     <div class="ranking">
       <el-row justify="center" >
         <el-col class="card" :span="4"  v-for="i in idols.ranking" :key="i.id">
@@ -82,7 +82,7 @@ export default {
       responseType: 'json',
       data: {}
     })
-
+    console.log(response.data)
     return { idols: response.data}
 
     // web3.eth.getAccounts(console.log);

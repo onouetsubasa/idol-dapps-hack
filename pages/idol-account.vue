@@ -17,6 +17,7 @@
           </el-menu-item>
       </el-submenu>    
     </el-menu>
+    <h2 style="margin: 20px 0">アイドル登録</h2>
     <el-card class="box-card" style="margin: 20px 0">
       <div class="text item" center>
         ADDRESS :  {{ address }}
@@ -49,6 +50,7 @@
 <script>
 import Web3 from 'web3'
 import abi from '../plugins/abi'
+import axios from "axios"
 var web3
 
 if (process.browser) {
@@ -75,8 +77,22 @@ export default {
   async created() {
   },
   methods: {
-    onSubmit() {
-      
+    async onSubmit({app}) {
+      const response = await axios.post('idol_token/iregister_idol?name=test&address=0x227803804140ace3287C6fe824B8192f2ec060c0', {
+        baseURL: 'https://idol-token-web.herokuapp.com/',
+        headers: { "Content-Type": "application/json", 'X-Requested-With': 'XMLHttpRequest' },
+        responseType: 'json',
+        data: {}
+      })
+      // const response = await axios.post(
+      //   'https://idol-token-web.herokuapp.com/idol_token/register_idol/', {
+      //     params: {
+      //       name: 'test',
+      //       address: 'test'
+      //     }
+      //   }
+      // )
+      console.log(response.data)
     },
     handleAvatarSuccess(res, file) {
       this.imageUrl = URL.createObjectURL(file.raw)
