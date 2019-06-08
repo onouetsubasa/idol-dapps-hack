@@ -1,0 +1,30 @@
+{
+    "recomends": [
+      {
+        "id": 3,
+        "name": "生田絵梨花",
+        "image": "https://res.cloudinary.com/hlimgugdc/image/upload/v1559992579/samplename.png",
+        "address": "0x227803804140ace3287C6fe824B8192f2ec060c0"
+      },
+      {
+        "id": 5,
+        "name": "生田絵梨花",
+        "image": "https://res.cloudinary.com/hlimgugdc/image/upload/v1559993191/samplename.png",
+        "address": "0x227803804140ace3287C6fe824B8192f2ec060c0"
+      }
+    ],
+    "ranking": [
+      {
+        "id": 4,
+        "name": "丹生明里",
+        "image": "https://res.cloudinary.com/hlimgugdc/image/upload/v1559992579/samplename.png",
+        "address": "0x227803804140ace3287C6fe824B8192f2ec060c0"
+      },
+      {
+        "id": 6,
+        "name": "丹生明里",
+        "image": "https://res.cloudinary.com/hlimgugdc/image/upload/v1559993192/samplename.png",
+        "address": "0x227803804140ace3287C6fe824B8192f2ec060c0"
+      }
+    ]
+  }

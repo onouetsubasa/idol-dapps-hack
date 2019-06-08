@@ -5,7 +5,7 @@ export default {
   ** Headers of the page
   */
  env: {
-  contract_addr: '0xe228f3388ac5aaf4a81f9af358ac5dae6bb13028'
+  contract_addr: '0xfd55cdf84a5545971341f17e4746cd300301aee3'
  },
   head: {
     title: process.env.npm_package_name || '',
@@ -38,7 +38,10 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios',
   ],
+  axios: {
+  },
   /*
   ** Build configuration
   */
