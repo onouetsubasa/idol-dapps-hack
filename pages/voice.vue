@@ -112,24 +112,24 @@ export default {
       //   }
       // )
       console.log(response)
-      // contract.methods.releaseVoice(
-      //   8888,
-      //   this.form.supply,
-      //   this.form.price
-      // )
-      // .send({
-      //     from: this.address,
-      //     gas: 3000000,
-      //     gasPrice: '3000000'
-      // })
-      // .on('transactionHash', (hash) => {
-      //   this.transaction = hash
-      // })
-      // .on('confirmation', (confirmationNumber, receipt) => {
-      //   if(receipt.status) {
-      //     this.$router.push({ path: `/idol/${receipt.from}` })
-      //   }
-      // })
+      contract.methods.releaseVoice(
+        7777,
+        this.form.supply,
+        this.form.price
+      )
+      .send({
+          from: this.address,
+          gas: 3000000,
+          gasPrice: '3000000'
+      })
+      .on('transactionHash', (hash) => {
+        this.transaction = hash
+      })
+      .on('confirmation', (confirmationNumber, receipt) => {
+        if(receipt.status) {
+          this.$router.push({ path: `/idol/${receipt.from}` })
+        }
+      })
     },
     detectFiles(e) {
       // アップロード対象は1件のみとする

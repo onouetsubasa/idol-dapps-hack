@@ -28,12 +28,16 @@
       :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
       style="width: 100%">
       <el-table-column
-        label="Date"
-        prop="date">
+        label="名前"
+        prop="name">
       </el-table-column>
       <el-table-column
-        label="Name"
-        prop="name">
+        label="総発行量"
+        prop="totalSupply">
+      </el-table-column>
+      <el-table-column
+        label="金額"
+        prop="price">
       </el-table-column>
       <el-table-column
         align="right">
@@ -62,23 +66,7 @@ const contract = new web3.eth.Contract(abi, process.env.contract_addr)
     data() {
       return {
         address: '',
-        tableData: [{
-          date: '2016-05-03',
-          name: 'Tom',
-          address: 'No. 189, Grove St, Los Angeles'
-        }, {
-          date: '2016-05-02',
-          name: 'John',
-          address: 'No. 189, Grove St, Los Angeles'
-        }, {
-          date: '2016-05-04',
-          name: 'Morgan',
-          address: 'No. 189, Grove St, Los Angeles'
-        }, {
-          date: '2016-05-01',
-          name: 'Jessy',
-          address: 'No. 189, Grove St, Los Angeles'
-        }],
+        tableData: [],
         search: '',
       }
     },
@@ -86,6 +74,49 @@ const contract = new web3.eth.Contract(abi, process.env.contract_addr)
       const addresses = await web3.eth.getAccounts()
       const address = addresses[0]
       return { address: address }
+    },
+    created() {
+      contract.methods.balanceOf(
+        this.address
+      ).call()
+      .then((result) => {
+        const num = web3.utils.hexToNumber(result)
+        for(var i=0; i < num; i++) {
+          contract.methods.tokenOfOwnerByIndex(
+            this.address,
+            i
+          ).call()
+          .then((result) => {
+            const tokenId = web3.utils.hexToNumber(result)
+            contract.methods.voiceIds(
+              tokenId
+            ).call()
+            .then((result) => {
+              const voiceId = web3.utils.hexToNumber(result)
+              contract.methods.voices(
+                voiceId
+              ).call()
+              .then((result) => {
+                const totalSupply = web3.utils.hexToNumber(result.totalSupply)
+                const issuedNum = web3.utils.hexToNumber(result.issuedNum)
+                const price = web3.utils.hexToNumber(result.price)
+                console.log({
+                  totalSupply: totalSupply,
+                  issuedNum: issuedNum,
+                  price: price
+                })
+                this.tableData.push({
+                  name: '朝日がきれい',
+                  totalSupply: totalSupply,
+                  issuedNum: issuedNum,
+                  price: price,
+                  voiceId: voiceId
+                })
+              })
+            })
+          })
+        }
+      })
     },
     methods: {
       onPlay() {
