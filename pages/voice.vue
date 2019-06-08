@@ -48,8 +48,8 @@ if (process.browser) {
   web3 = new Web3(Web3.givenProvider)
 }
 
-const contract = new web3.eth.Contract(abi, '0xfd55cdf84a5545971341f17e4746cd300301aee3')
-
+// const contract = new web3.eth.Contract(abi, '0xfd55cdf84a5545971341f17e4746cd300301aee3')
+const contract = new web3.eth.Contract(abi, process.env.contract_addr)
 export default {
   components: {
     Logo
