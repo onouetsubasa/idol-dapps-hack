@@ -63,7 +63,8 @@
     },
     methods: {
       onPlay() {
-        new Audio('/Users/takasetoshiaki/Desktop/music.mp3').play();
+        console.log("test")
+        // new Audio('/Users/takasetoshiaki/Desktop/music.mp3').play();
       },
       handleEdit(index, row) {
         console.log(index, row);
