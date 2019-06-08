@@ -54,14 +54,12 @@
 import Logo from '~/components/Logo.vue'
 import abi from '~/plugins/abi'
 import Web3 from 'web3'
-import jsonIdol from '~/assets/idol.json'
-console.log(jsonIdol)
+// import jsonIdol from '~/assets/idol.json'
+import axios from "axios"
 var web3
 
 // init client web3 js
 if (process.browser) {
-  console.log('givenProvider=')
-  console.log(Web3.givenProvider)
   web3 = new Web3(Web3.givenProvider)
 }
 
@@ -78,17 +76,22 @@ export default {
     }
   },
   async asyncData({ app }) {
-    // const items = await app.$axios.$get('https://idol-token-web.herokuapp.com/idol_token/index/');
-    // console.log(await items);
-    jsonIdol
+    const response = await axios.get('idol_token/index/', {
+      baseURL: 'https://idol-token-web.herokuapp.com',
+      headers: { "Content-Type": "application/json", 'X-Requested-With': 'XMLHttpRequest' },
+      responseType: 'json',
+      data: {}
+    })
+
+    return { idols: response.data}
+
     // web3.eth.getAccounts(console.log);
     // const contract = new web3.eth.Contract(abi, '0x2b5af53e4d1277271c440d0b7209bf50b8d42b94')
     // contract.methods.name().call()
     // .then((result) => {
     //   console.log(result)
     // })
-    let data = {idols: jsonIdol}
-    return data
+
   }
 }
 </script>

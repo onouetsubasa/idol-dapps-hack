@@ -63,7 +63,28 @@
     },
     methods: {
       onPlay() {
-        console.log("test")
+        var context = new AudioContext();
+        var buffer = null;
+        var source = context.createBufferSource();
+
+        var request = new XMLHttpRequest();
+        request.open('GET', '/Users/takasetoshiaki/Desktop/music.mp3', true);
+        request.responseType = 'arraybuffer';
+        request.send();
+
+        request.onload = function () {
+          var res = request.response;
+          console.log("test")
+          context.decodeAudioData(res, function (buf) {
+            console.log("test")
+            source.buffer = buf;
+            source.connect(context.destination);
+        source.start(0);
+          });
+        };
+
+        // source.connect(context.destination);
+        // source.start(0);
         // new Audio('/Users/takasetoshiaki/Desktop/music.mp3').play();
       },
       handleEdit(index, row) {
