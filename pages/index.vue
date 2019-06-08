@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-      <el-menu-item index="1">Top</el-menu-item>
+      <el-menu-item index="1">
+        <nuxt-link to="/">Top</nuxt-link>
+      </el-menu-item>
       <el-menu-item index="2">
         <nuxt-link to="/voice">商品登録</nuxt-link>
       </el-menu-item>

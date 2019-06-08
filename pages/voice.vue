@@ -1,9 +1,14 @@
 <template>
   <div class="container">
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-      <el-menu-item index="1">Top</el-menu-item>
+      <el-menu-item index="1">
+        <nuxt-link to="/">Top</nuxt-link>
+      </el-menu-item>
       <el-menu-item index="2">
         <nuxt-link to="/voice">商品登録</nuxt-link>
+      </el-menu-item>
+      <el-menu-item index="3">
+        <nuxt-link to="/my_item_list">MyPage</nuxt-link>
       </el-menu-item>
     </el-menu>
     <h3>商品登録</h3>
@@ -43,7 +48,7 @@ if (process.browser) {
   web3 = new Web3(Web3.givenProvider)
 }
 
-const contract = new web3.eth.Contract(abi, '0x90ac1d62e7213d6bf8f1e06590ecb9023e444918')
+const contract = new web3.eth.Contract(abi, '0xfd55cdf84a5545971341f17e4746cd300301aee3')
 
 export default {
   components: {
