@@ -5,6 +5,7 @@
       <el-menu-item index="2">
         <nuxt-link to="/voice">商品登録</nuxt-link>
       </el-menu-item>
+      <el-menu-item index="3">MyPage</el-menu-item>
     </el-menu>
     <h3>おすすめ</h3>
     <div class="recomend">
