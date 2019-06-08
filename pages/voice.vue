@@ -84,7 +84,7 @@ export default {
     },
     onSubmit() {
       contract.methods.releaseVoice(
-        9999,
+        8888,
         this.form.supply,
         this.form.price
       )
