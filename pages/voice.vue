@@ -22,6 +22,11 @@
         <el-button>リセット</el-button>
       </el-form-item>
     </el-form>
+    <div>
+      <el-card class="box-card">
+        <div class="text item">{{transaction}}</div>
+      </el-card>
+    </div>
   </div>
 </template>
 
@@ -38,7 +43,7 @@ if (process.browser) {
   web3 = new Web3(Web3.givenProvider)
 }
 
-const contract = new web3.eth.Contract(abi, '0x2b5af53e4d1277271c440d0b7209bf50b8d42b94')
+const contract = new web3.eth.Contract(abi, '0x90ac1d62e7213d6bf8f1e06590ecb9023e444918')
 
 export default {
   components: {
@@ -51,7 +56,8 @@ export default {
         name: '',
         supply: 0,
         price: 0
-      }
+      },
+      transaction: ''
     };
   },
   async asyncData() {
@@ -79,10 +85,19 @@ export default {
       )
       .send({
           from: this.address,
-          gas: 30000000,
+          gas: 3000000,
           gasPrice: '3000000'
-      }, (error, transactionHash) => {
-        console.log(transactionHash)
+      })
+      // .then((receipt) => {
+      //   console.log(receipt)
+      // });
+      .on('transactionHash', (hash) => {
+        this.transaction = hash
+      })
+      .on('confirmation', (confirmationNumber, receipt) => {
+        if(receipt.status) {
+          this.$router.push({ path: `/idol/${receipt.from}` })
+        }
       })
     }
   }
