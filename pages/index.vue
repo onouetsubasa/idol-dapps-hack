@@ -35,7 +35,7 @@
 
 <script>
 import Logo from '~/components/Logo.vue'
-
+import Logo from '~/assets/metamask_connect.js'
 let idol = {
   name: '',
   image: ''
@@ -69,7 +69,7 @@ export default {
   .card {
     margin: 10px
   }
-  
+
   .bottom {
     margin-top: 13px;
     line-height: 12px;
@@ -90,9 +90,8 @@ export default {
       display: table;
       content: "";
   }
-  
+
   .clearfix:after {
       clear: both
   }
 </style>
-
