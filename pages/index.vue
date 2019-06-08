@@ -78,8 +78,8 @@ export default {
     }
   },
   async asyncData({ app }) {
-    const items = await app.$axios.$get('https://idol-token-web.herokuapp.com/idol_token/index/');
-    console.log(await items);
+    // const items = await app.$axios.$get('https://idol-token-web.herokuapp.com/idol_token/index/');
+    // console.log(await items);
     jsonIdol
     // web3.eth.getAccounts(console.log);
     // const contract = new web3.eth.Contract(abi, '0x2b5af53e4d1277271c440d0b7209bf50b8d42b94')
