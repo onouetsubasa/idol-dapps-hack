@@ -35,7 +35,7 @@
 
 <script>
 import Logo from '~/components/Logo.vue'
-import Logo from '~/assets/metamask_connect.js'
+import web3 from '~/assets/metamask_connect.js'
 let idol = {
   name: '',
   image: ''
