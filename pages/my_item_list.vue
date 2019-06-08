@@ -31,7 +31,7 @@
     <el-table-column
       align="right">
       <template slot-scope="scope">
-        <el-button type="primary" icon="el-icon-video-play"></el-button>
+        <el-button type="primary" icon="el-icon-video-play" @click="onPlay"></el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -62,6 +62,9 @@
       }
     },
     methods: {
+      onPlay() {
+        new Audio('/Users/takasetoshiaki/Desktop/music.mp3').play();
+      },
       handleEdit(index, row) {
         console.log(index, row);
       },
