@@ -92,6 +92,7 @@ export default {
       //     }
       //   }
       // )
+      console.log(response)
       this.$router.push({ path: `/voice` })
     },
     handleAvatarSuccess(res, file) {

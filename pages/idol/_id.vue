@@ -22,6 +22,16 @@
       ADDRESS :  {{ address }}
     </div>
   </el-card>
+  <el-row justify="center" >
+    <el-col class="card" :span="4">
+      <el-card :body-style="{ padding: '0px' }">
+        <img :src="idol.image" class="image">
+        <div style="padding: 14px;">
+          <span>{{ idol.name }}</span>
+        </div>
+      </el-card>
+    </el-col>
+  </el-row>
   <el-card class="box-card" style="margin: 20px 0">
     <el-table
       :data="tableData"
@@ -60,7 +70,8 @@
 <script>
 import Web3 from 'web3'
 import abi from '~/plugins/abi'
-import voiceVue from '../voice.vue';
+import voiceVue from '../voice.vue'
+import axios from "axios"
 var web3
 
 // init client web3 js
@@ -78,13 +89,29 @@ const contract = new web3.eth.Contract(abi, process.env.contract_addr)
     data() {
       return {
         address: '',
+        idol: {
+          id: '',
+          name: '',
+          image: '',
+          address: ''
+        },
         tableData: []
       }
     },
-    async asyncData() {
+    async asyncData({app}) {
       const addresses = await web3.eth.getAccounts()
       const address = addresses[0]
-      return { address: address }
+      const response = await axios.get(`idol_token/idol?address=${address}`, {
+        baseURL: 'https://idol-token-web.herokuapp.com/',
+        headers: { "Content-Type": "application/json", 'X-Requested-With': 'XMLHttpRequest' },
+        responseType: 'json',
+        data: {}
+      })
+      console.log(response.data)
+      return { 
+        address: address,
+        idol: response.data
+      }
     },
     async created() {
       contract.methods.balanceOfOwnedVoices(
