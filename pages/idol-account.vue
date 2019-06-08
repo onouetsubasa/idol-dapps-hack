@@ -17,10 +17,31 @@
           </el-menu-item>
       </el-submenu>    
     </el-menu>
-    <el-card class="box-card">
+    <el-card class="box-card" style="margin: 20px 0">
       <div class="text item" center>
         ADDRESS :  {{ address }}
       </div>
+    </el-card>
+    <el-card class="box-card">
+      <el-form ref="form" :model="form" label-width="120px">
+        <el-form-item label="名前">
+          <el-input v-model="name"></el-input>
+        </el-form-item>
+        <el-form-item label="アイコン">
+          <el-upload
+            class="avatar-uploader"
+            action="https://jsonplaceholder.typicode.com/posts/"
+            :show-file-list="false"
+            :on-success="handleAvatarSuccess"
+            :before-upload="beforeAvatarUpload">
+            <img v-if="imageUrl" :src="imageUrl" class="avatar">
+            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+          </el-upload>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="onSubmit">登録</el-button>
+        </el-form-item>
+      </el-form>
     </el-card>
   </div>
 </template>
@@ -40,7 +61,10 @@ const contract = new web3.eth.Contract(abi, process.env.contract_addr)
 export default {
   data() {
     return {
-      address: ''
+      address: '',
+      name: '',
+      image: '',
+      imageUrl: ''
     };
   },
   async asyncData() {
@@ -51,6 +75,51 @@ export default {
   async created() {
   },
   methods: {
+    onSubmit() {
+      
+    },
+    handleAvatarSuccess(res, file) {
+      this.imageUrl = URL.createObjectURL(file.raw)
+      this.image = file;
+    },
+    beforeAvatarUpload(file) {
+      const isJPG = file.type === 'image/jpeg';
+      const isLt2M = file.size / 1024 / 1024 < 2;
+
+      if (!isJPG) {
+        this.$message.error('Avatar picture must be JPG format!');
+      }
+      if (!isLt2M) {
+        this.$message.error('Avatar picture size can not exceed 2MB!');
+      }
+      return isJPG && isLt2M;
+    }
   }
 }
 </script>
+
+<style>
+  .avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
+</style>
