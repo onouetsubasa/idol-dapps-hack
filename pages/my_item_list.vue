@@ -106,7 +106,7 @@ const contract = new web3.eth.Contract(abi, process.env.contract_addr)
                 })
                 const totalSupply = web3.utils.hexToNumber(result.totalSupply)
                 const issuedNum = web3.utils.hexToNumber(result.issuedNum)
-                const price = 100//web3.utils.hexToNumber(result.price)
+                const price = web3.utils.hexToNumber(result.price)
                 console.log({
                   totalSupply: totalSupply,
                   issuedNum: issuedNum,
