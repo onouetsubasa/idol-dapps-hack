@@ -40,6 +40,10 @@
       :data="tableData"
       style="width: 100%">
       <el-table-column
+        label="ID"
+        prop="voiceId">
+      </el-table-column>
+      <el-table-column
         label="名前"
         prop="name">
       </el-table-column>
@@ -54,10 +58,6 @@
       <el-table-column
         label="金額"
         prop="price">
-      </el-table-column>
-      <el-table-column
-        label="ID"
-        prop="voiceId">
       </el-table-column>
       <el-table-column
         align="right">

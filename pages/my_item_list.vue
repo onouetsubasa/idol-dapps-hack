@@ -43,6 +43,10 @@
         prop="totalSupply">
       </el-table-column>
       <el-table-column
+        label="総発行量"
+        prop="issuedNum">
+      </el-table-column>
+      <el-table-column
         label="金額"
         prop="price">
       </el-table-column>
