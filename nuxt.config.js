@@ -5,7 +5,7 @@ export default {
   ** Headers of the page
   */
  env: {
-  contract_addr: '0xfd55cdf84a5545971341f17e4746cd300301aee3'
+  contract_addr: '0x0b52c18a74c5826b4edf1baaf5916603022795a9'
  },
   head: {
     title: process.env.npm_package_name || '',
