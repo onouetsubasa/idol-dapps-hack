@@ -89,6 +89,7 @@ const contract = new web3.eth.Contract(abi, process.env.contract_addr)
     data() {
       return {
         address: '',
+        myAddress: '',
         idol: {
           id: '',
           name: '',
@@ -100,7 +101,9 @@ const contract = new web3.eth.Contract(abi, process.env.contract_addr)
     },
     async asyncData({app, params}) {
       console.log("aa" + params.id)
-      // const addresses = await web3.eth.getAccounts()
+      const myAddresses = await web3.eth.getAccounts()
+      const myAddress = myAddresses[0]
+
       const address = params.id
       const response = await axios.get(`idol_token/idol?address=${address}`, {
         baseURL: 'https://idol-token-web.herokuapp.com/',
@@ -111,6 +114,7 @@ const contract = new web3.eth.Contract(abi, process.env.contract_addr)
       console.log(response.data)
       return { 
         address: address,
+        myAddress: myAddress,
         idol: response.data
       }
     },
@@ -165,7 +169,7 @@ const contract = new web3.eth.Contract(abi, process.env.contract_addr)
         voiceId
       )
       .send({
-          from: this.address,
+          from: this.myAddress,
           gas: 3000000,
           gasPrice: web3.eth.gasPrice,
           gasLimit: web3.eth.getBlock("latest").gasLimit,
