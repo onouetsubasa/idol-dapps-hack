@@ -31,11 +31,15 @@
       :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
       style="width: 100%">
       <el-table-column
-        label="名前"
+        label="Idol"
+        prop="idol_name">
+      </el-table-column>
+      <el-table-column
+        label="Voice"
         prop="name">
       </el-table-column>
       <el-table-column
-        label="総発行量"
+        label="最大発行量"
         prop="totalSupply">
       </el-table-column>
       <el-table-column
@@ -120,7 +124,8 @@ const contract = new web3.eth.Contract(abi, process.env.contract_addr)
                   totalSupply: totalSupply,
                   issuedNum: issuedNum,
                   price: price,
-                  voiceId: voiceId
+                  voiceId: voiceId,
+                  idol_name: response.data.idol_name
                 })
               })
             })
