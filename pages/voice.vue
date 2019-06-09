@@ -99,7 +99,7 @@ export default {
     },
     async onSubmit() {
       // console.log(this.$refs)
-      const response = await axios.get(`idol_token/register_item/?title=${this.name}`, {
+      const response = await axios.get(`idol_token/register_item/?title=${this.form.name}`, {
         baseURL: 'https://idol-token-web.herokuapp.com/',
         headers: { "Content-Type": "application/json", 'X-Requested-With': 'XMLHttpRequest' },
         responseType: 'json',

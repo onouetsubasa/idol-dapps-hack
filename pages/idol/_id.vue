@@ -130,16 +130,19 @@ const contract = new web3.eth.Contract(abi, process.env.contract_addr)
               voiceId
             ).call()
             .then(async (result) => {
+              console.log("追加")
+              const totalSupply = web3.utils.hexToNumber(result.totalSupply)
+              console.log(totalSupply)
+              const issuedNum = web3.utils.hexToNumber(result.issuedNum)
+              console.log(issuedNum)
+              const price = 100//web3.utils.hexToNumber(result.price)
+              console.log(price)
               const response = await axios.get(`idol_token/item/${voiceId}/`, {
                 baseURL: 'https://idol-token-web.herokuapp.com/',
                 headers: { "Content-Type": "application/json", 'X-Requested-With': 'XMLHttpRequest' },
                 responseType: 'json',
                 data: {}
               })
-
-              const totalSupply = web3.utils.hexToNumber(result.totalSupply)
-              const issuedNum = web3.utils.hexToNumber(result.issuedNum)
-              const price = web3.utils.hexToNumber(result.price)
               this.tableData.push({
                 name: response.data.title,
                 totalSupply: totalSupply,
