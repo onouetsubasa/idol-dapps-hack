@@ -15,7 +15,10 @@
           <el-menu-item index="2-2">
             <nuxt-link to="/voice">音声登録</nuxt-link>
           </el-menu-item>
-      </el-submenu>    
+      </el-submenu>
+      <el-menu-item index="4" disabled>
+        <el-tag type="info" style="backgroundColor: black; color: white">Rinkeby Support</el-tag>
+      </el-menu-item> 
     </el-menu>
     <h2 style="margin: 20px 0">アイドル登録</h2>
     <el-card class="box-card" style="margin: 20px 0">

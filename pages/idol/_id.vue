@@ -9,13 +9,16 @@
     </el-menu-item>
     <el-submenu index="3">
       <template slot="title">アイドルはこちら</template>
-        <el-menu-item index="2-1">
+        <el-menu-item index="3-1">
           <nuxt-link to="/idol-account">アイドルアカウント登録</nuxt-link>
         </el-menu-item>
-        <el-menu-item index="2-2">
+        <el-menu-item index="3-2">
           <nuxt-link to="/voice">音声登録</nuxt-link>
         </el-menu-item>
-    </el-submenu>    
+    </el-submenu>
+    <el-menu-item index="4" disabled>
+      <el-tag type="info" style="backgroundColor: black; color: white">Rinkeby Support</el-tag>
+    </el-menu-item>
   </el-menu>
   <el-card class="box-card" style="margin: 20px 0">
     <div class="text item" center>
