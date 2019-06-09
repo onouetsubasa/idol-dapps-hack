@@ -98,9 +98,10 @@ const contract = new web3.eth.Contract(abi, process.env.contract_addr)
         tableData: []
       }
     },
-    async asyncData({app}) {
-      const addresses = await web3.eth.getAccounts()
-      const address = addresses[0]
+    async asyncData({app, params}) {
+      console.log("aa" + params.id)
+      // const addresses = await web3.eth.getAccounts()
+      const address = params.id
       const response = await axios.get(`idol_token/idol?address=${address}`, {
         baseURL: 'https://idol-token-web.herokuapp.com/',
         headers: { "Content-Type": "application/json", 'X-Requested-With': 'XMLHttpRequest' },
