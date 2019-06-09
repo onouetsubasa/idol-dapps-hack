@@ -77,12 +77,16 @@ export default {
   async created() {
   },
   methods: {
+    
     async onSubmit({app}) {
-      const response = await axios.post('idol_token/iregister_idol?name=test&address=0x227803804140ace3287C6fe824B8192f2ec060c0', {
+      const add = await web3.eth.getAccounts();
+      const addres = add[0];
+      const response = await axios.get(`idol_token/register_idol?name=${this.name}&address=${addres}`, {
         baseURL: 'https://idol-token-web.herokuapp.com/',
         headers: { "Content-Type": "application/json", 'X-Requested-With': 'XMLHttpRequest' },
         responseType: 'json',
-        data: {}
+        data: {
+        }
       })
       // const response = await axios.post(
       //   'https://idol-token-web.herokuapp.com/idol_token/register_idol/', {
